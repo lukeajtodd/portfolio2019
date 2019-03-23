@@ -462,6 +462,7 @@ module.exports = {
     '3xl': '80rem',
     '4xl': '90rem',
     '5xl': '100rem',
+    content: '120rem',
     full: '100%',
   },
 
@@ -508,6 +509,7 @@ module.exports = {
     '4': '1rem',
     '6': '1.5rem',
     '8': '2rem',
+    '10': '2.5rem',
     '12': '3rem',
     '16': '4rem',
     '24': '6rem',
@@ -646,19 +648,6 @@ module.exports = {
     require('tailwindcss/plugins/container')({
       center: true,
     }),
-    // function({ addUtilities, config }) {
-    //   const colorMap = config('colors')
-    //   const newUtils = {}
-    //   Object.keys(colorMap).forEach(key => {
-    //     newUtils[`.fill-${key}`] = {
-    //       fill: colorMap[key],
-    //     }
-    //   })
-
-    //   console.log(newUtils)
-
-    //   addUtilities(newUtils)
-    // },
   ],
 
   /*

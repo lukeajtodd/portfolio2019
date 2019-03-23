@@ -7,16 +7,15 @@ import Globals from '../components/Globals'
 import Hero from '../components/Hero'
 
 const Container = styled.div`
-  ${tw`container`}
+  ${tw`w-full max-w-content mx-auto`}
 `
 
 const IndexPage = () => (
   <>
     <Globals />
-    <Container />
-    <div className="w-full">
+    <Container>
       <Hero />
-    </div>
+    </Container>
   </>
 )
 
