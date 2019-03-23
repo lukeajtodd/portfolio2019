@@ -114,7 +114,7 @@ module.exports = {
 
   fonts: {
     display: ['Righteous'],
-    sans: ['Nanum Gothic', 'sans-serif'],
+    sans: ['Nanum\\ Gothic', 'sans-serif'],
   },
 
   /*
@@ -148,6 +148,11 @@ module.exports = {
     '5xl': '3rem', // 48px
     '6xl': '5rem',
     '7xl': '8rem',
+
+    'header-1-sm': '6rem',
+    'header-2-sm': '5.5rem',
+    'header-1-lg': '8.125rem', // 130px
+    'header-2-lg': '7.375rem', // 118px
   },
 
   /*
@@ -534,6 +539,11 @@ module.exports = {
     '4': '1rem',
     '6': '1.5rem',
     '8': '2rem',
+
+    'minus-1_2': '-0.3rem',
+    'minus-2': '-0.5rem',
+    'minus-8': '-2rem',
+    'minus-9': '-2.5rem',
   },
 
   /*
@@ -627,11 +637,28 @@ module.exports = {
     '100': '1',
   },
 
+  svgFill: {
+    current: 'currentColor',
+  },
+
   plugins: [
     // eslint-disable-next-line global-require
     require('tailwindcss/plugins/container')({
       center: true,
     }),
+    // function({ addUtilities, config }) {
+    //   const colorMap = config('colors')
+    //   const newUtils = {}
+    //   Object.keys(colorMap).forEach(key => {
+    //     newUtils[`.fill-${key}`] = {
+    //       fill: colorMap[key],
+    //     }
+    //   })
+
+    //   console.log(newUtils)
+
+    //   addUtilities(newUtils)
+    // },
   ],
 
   /*
