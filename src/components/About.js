@@ -40,7 +40,7 @@ const About = () => (
   <Section>
     <FlexItem width="30%" height="100%">
       <Title>About</Title>
-      <Divider />
+      <Divider side="left" />
     </FlexItem>
     <FlexItem display="flex">
       <Content>

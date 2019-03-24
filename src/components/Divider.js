@@ -12,7 +12,10 @@ const Divider = styled.section`
 
   @media screen and (min-width: 1200px) {
     position: absolute;
-    left: calc(-100vw + (100% - 1rem));
+    ${props =>
+      props.side === 'left'
+        ? { left: 'calc(-100vw + (100% - 1rem))' }
+        : { right: 'calc(-100vw + (100% - 1rem))', left: '0' }}
     width: 100vw;
   }
 `
