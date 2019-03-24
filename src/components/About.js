@@ -6,8 +6,10 @@ import VisibilitySensor from './VisibilitySensor'
 
 import Divider from './Divider'
 
+import Zigzag from '../svgs/zigzag.svg'
+
 const Section = styled.section`
-  ${tw`flex h-full xl:h-screen xl:items-center flex-col xl:flex-row px-4`}
+  ${tw`flex relative h-full xl:h-screen xl:items-center flex-col xl:flex-row px-4`}
   @media screen and (min-width: 1200px) {
     border-right: 40px solid #31f0c4;
   }
@@ -39,6 +41,17 @@ const FlexItem = styled.div`
   flex-direction: column;
   @media screen and (min-width: 1200px) {
     align-items: center;
+  }
+`
+
+const StyledZigzag = styled(Zigzag)`
+  ${tw`relative xl:absolute`}
+  height: 60px;
+
+  @media screen and (min-width: 1200px) {
+    top: 95%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 `
 
@@ -120,6 +133,7 @@ const About = () => (
         )}
       </VisibilitySensor>
     </FlexItem>
+    <StyledZigzag />
   </Section>
 )
 

@@ -81,6 +81,8 @@ const MessageBlock = styled.div`
   ${tw`flex justify-center items-center mx-auto mb-6 p-6 xl:p-8`}
   width: 100%;
   background-color: #31f0c4;
+  opacity: ${props => props.opacity};
+  transform: ${props => props.transform};
 
   @media screen and (min-width: 1200px) {
     width: 80%;
@@ -148,14 +150,28 @@ const Projects = () => (
         </ProjectListItem>
       </ProjectList>
     </ProjectListContainer>
-    <MessageBlock>
-      <MessageBlockTitle>
-        For any more info, just get in touch…
-      </MessageBlockTitle>
-      <Link href="#" width="3rem" largeWidth="5rem">
-        <Message />
-      </Link>
-    </MessageBlock>
+    <VisibilitySensor once>
+      {({ isVisible }) => (
+        <Spring
+          delay={300}
+          to={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'translateY(0)' : 'translateY(-50px)',
+          }}
+        >
+          {({ opacity, transform }) => (
+            <MessageBlock opacity={opacity} transform={transform}>
+              <MessageBlockTitle>
+                For any more info, just get in touch…
+              </MessageBlockTitle>
+              <Link href="#" width="3rem" largeWidth="5rem">
+                <Message />
+              </Link>
+            </MessageBlock>
+          )}
+        </Spring>
+      )}
+    </VisibilitySensor>
   </Section>
 )
 
