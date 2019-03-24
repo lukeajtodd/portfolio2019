@@ -78,7 +78,7 @@ const ProjectListContainer = styled.div`
 `
 
 const MessageBlock = styled.div`
-  ${tw`flex justify-center items-center mx-auto mb-6 p-6 xl:p-8`}
+  ${tw`flex justify-center items-center mx-auto mb-6 p-6 xl:p-8 shadow-default`}
   width: 100%;
   background-color: #31f0c4;
   opacity: ${props => props.opacity};

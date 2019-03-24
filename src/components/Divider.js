@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import tw from 'tailwind.macro'
 
 const Divider = styled.section`
-  ${tw`mt-spacer`}
+  ${tw`mt-spacer shadow-default`}
   height: 40px;
   position: relative;
   left: -2rem;

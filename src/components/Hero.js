@@ -50,11 +50,11 @@ const Link = styled.a`
 `
 
 const Sidebar = styled.div`
-  ${tw`flex relative font-display h-full px-4`}
+  ${tw`flex relative font-display h-full px-4 xl:shadow-default`}
 `
 
 const FaceContainer = styled.div`
-  ${tw`flex items-end xl:justify-end absolute xl:static pin-b pin-r h-full`}
+  ${tw`flex items-end xl:justify-end absolute xl:static pin-b pin-r h-full xl:shadow-default`}
   pointer-events: none;
 `
 
