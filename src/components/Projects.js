@@ -10,9 +10,10 @@ import VisibilitySensor from './VisibilitySensor'
 import Message from '../svgs/email.svg'
 
 const Section = styled.section`
-  ${tw`flex relative h-full xl:h-screen xl:items-center flex-col xl:flex-row xl:flex-row-reverse xl:flex-wrap px-4`}
+  ${tw`flex relative h-full xl:items-center flex-col xl:flex-row xl:flex-row-reverse xl:flex-wrap px-4`}
   overflow: hidden;
   @media screen and (min-width: 1200px) {
+    min-height: 100vh;
     border-right: 40px solid #31f0c4;
   }
 `
@@ -26,19 +27,17 @@ const Title = styled.h1`
 `
 
 const ProjectList = styled.ul`
-  ${tw`list-reset flex flex-wrap text-primary text-xl xl:text-2xl font-sans -mt-8`}
+  ${tw`list-reset text-primary text-right text-xl xl:text-2xl font-sans -mt-8`}
+  @media screen and (min-width: 1200px) {
+    width: 50%;
+  }
 `
 
 const ProjectListItem = styled.li`
   ${tw`text-right whitespace-no-wrap`}
-  flex: 1;
+  display: inline-block;
   margin-top: 2rem;
   margin-right: 2rem;
-
-  @media screen and (min-width: 1200px) {
-    flex: 0 0 33%;
-    margin-right: 0;
-  }
 `
 
 const Project = styled.a`
@@ -74,7 +73,8 @@ const ProjectListContainer = styled.div`
   @media screen and (min-width: 1200px) {
     justify-content: flex-end;
     padding-right: 4rem;
-    margin-top: 3.75rem;
+    padding-top: 7.5rem;
+    padding-bottom: 3.75rem;
   }
 `
 
