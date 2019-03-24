@@ -40,6 +40,7 @@
     "eslint-plugin-import": "^2.16.0",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
+    "gh-pages": "^2.0.1",
     "prettier": "^1.16.4"
   },
   "keywords": [
@@ -47,6 +48,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "deploy": "gatsby build && gh-pages -o deploy -d public -b master",
     "now-build": "npm run build",
     "build": "gatsby build",
     "dev": "gatsby develop -o",
