@@ -2,8 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
 
+import TrianglePattern from '../components/TrianglePattern'
+
 const Section = styled.section`
-  ${tw`flex h-full xl:h-screen xl:items-center xl:justify-center flex-col px-8`}
+  ${tw`flex relative h-full xl:h-screen xl:items-center xl:justify-center flex-col px-8`}
   @media screen and (min-width: 1200px) {
     border-right: 40px solid #31f0c4;
   }
@@ -32,8 +34,9 @@ const InterestListMirrored = styled.ul`
   }
 `
 
-const About = () => (
+const Interests = () => (
   <Section>
+    <TrianglePattern left={0} top="100%" />
     <Content>
       Here are a couple of the things I’m interested in, actively learning or
       working on:
@@ -55,4 +58,4 @@ const About = () => (
   </Section>
 )
 
-export default About
+export default Interests

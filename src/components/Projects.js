@@ -7,7 +7,7 @@ import Divider from './Divider'
 import Message from '../svgs/email.svg'
 
 const Section = styled.section`
-  ${tw`flex h-full xl:h-screen xl:items-center flex-col xl:flex-row xl:flex-row-reverse xl:flex-wrap px-4`}
+  ${tw`flex relative h-full xl:h-screen xl:items-center flex-col xl:flex-row xl:flex-row-reverse xl:flex-wrap px-4`}
   overflow: hidden;
   @media screen and (min-width: 1200px) {
     border-right: 40px solid #31f0c4;
@@ -97,7 +97,7 @@ const Link = styled.a`
   }
 `
 
-const About = () => (
+const Projects = () => (
   <Section>
     <FlexItem width="40%">
       <Title>Projects</Title>
@@ -136,4 +136,4 @@ const About = () => (
   </Section>
 )
 
-export default About
+export default Projects
