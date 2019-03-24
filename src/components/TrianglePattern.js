@@ -38,8 +38,8 @@ const TrianglePattern = ({ left, top }) => (
 )
 
 TrianglePattern.propTypes = {
-  left: PropTypes.oneOfType(PropTypes.number, PropTypes.string).isRequired,
-  top: PropTypes.oneOfType(PropTypes.number, PropTypes.string).isRequired,
+  left: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+  top: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
 }
 
 export default TrianglePattern

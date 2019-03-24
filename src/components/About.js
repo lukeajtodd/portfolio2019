@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
+import { Spring } from 'react-spring/renderprops'
+import VisibilitySensor from './VisibilitySensor'
 
 import Divider from './Divider'
 
@@ -20,6 +22,8 @@ const Title = styled.h1`
 
 const Content = styled.p`
   ${tw`font-sans text-primary text-lg xl:text-xl leading-normal`}
+  opacity: ${props => props.opacity};
+  transform: ${props => props.transform};
   @media screen and (min-width: 1200px) {
     width: 50%;
   }
@@ -43,18 +47,56 @@ const About = () => (
       <Divider side="left" />
     </FlexItem>
     <FlexItem display="flex">
-      <Content>
-        I’m an experienced web developer currently working remotely for an
-        agency called Evoluted.
-      </Content>
-      <Content>
-        I love working with the web, every new challenge that presents itself
-        and the multitude of different technologies to get stuck into.
-      </Content>
-      <Content>
-        Speaking of, I love working with Javascript. I know it can be a bit of a
-        Marmite language sometimes but when done right it feels great.
-      </Content>
+      <VisibilitySensor once>
+        {({ isVisible }) => (
+          <>
+            <Spring
+              delay={300}
+              to={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(200px)',
+              }}
+            >
+              {({ opacity, transform }) => (
+                <Content opacity={opacity} transform={transform}>
+                  I’m an experienced web developer currently working remotely
+                  for an agency called Evoluted.
+                </Content>
+              )}
+            </Spring>
+            <Spring
+              delay={350}
+              to={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(200px)',
+              }}
+            >
+              {({ opacity, transform }) => (
+                <Content opacity={opacity} transform={transform}>
+                  I love working with the web, every new challenge that presents
+                  itself and the multitude of different technologies to get
+                  stuck into.
+                </Content>
+              )}
+            </Spring>
+            <Spring
+              delay={400}
+              to={{
+                opacity: isVisible ? 1 : 0,
+                transform: isVisible ? 'translateY(0)' : 'translateY(200px)',
+              }}
+            >
+              {({ opacity, transform }) => (
+                <Content opacity={opacity} transform={transform}>
+                  Speaking of, I love working with Javascript. I know it can be
+                  a bit of a Marmite language sometimes but when done right it
+                  feels great.
+                </Content>
+              )}
+            </Spring>
+          </>
+        )}
+      </VisibilitySensor>
     </FlexItem>
   </Section>
 )

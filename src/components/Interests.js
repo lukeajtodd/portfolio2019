@@ -1,8 +1,11 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
+import { Spring } from 'react-spring/renderprops'
+import VisibilitySensor from './VisibilitySensor'
 
-import TrianglePattern from '../components/TrianglePattern'
+import TrianglePattern from './TrianglePattern'
 
 const Section = styled.section`
   ${tw`flex relative h-full xl:h-screen xl:items-center xl:justify-center flex-col px-8`}
@@ -13,6 +16,8 @@ const Section = styled.section`
 
 const Content = styled.p`
   ${tw`font-sans text-primary text-center text-xl xl:text-2xl leading-normal mb-0`}
+  opacity: ${props => props.opacity};
+  transform: ${props => props.transform};
   @media screen and (min-width: 1200px) {
     width: 40%;
   }
@@ -34,25 +39,109 @@ const InterestListMirrored = styled.ul`
   }
 `
 
+const PushItem = ({ direction, isVisible, delay, ...props }) => (
+  <Spring
+    delay={delay}
+    to={{
+      opacity: isVisible ? 1 : 0,
+      transform: isVisible
+        ? 'translateX(0)'
+        : `translateX(${direction === 'left' ? '-100%' : '100%'})`,
+    }}
+  >
+    {({ opacity, transform }) => props.children({ opacity, transform })}
+  </Spring>
+)
+
+PushItem.propTypes = {
+  direction: PropTypes.string.isRequired,
+  isVisible: PropTypes.bool,
+  delay: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+  children: PropTypes.func.isRequired,
+}
+
+PushItem.defaultProps = {
+  isVisible: false,
+  delay: 300,
+}
+
 const Interests = () => (
   <Section>
     <TrianglePattern left={0} top="100%" />
-    <Content>
-      Here are a couple of the things I’m interested in, actively learning or
-      working on:
-    </Content>
+    <VisibilitySensor once partialVisibility offset={{ bottom: 100 }}>
+      {({ isVisible }) => (
+        <Spring
+          delay={300}
+          to={{
+            opacity: isVisible ? 1 : 0,
+            transform: isVisible ? 'scale(1)' : 'scale(1.4)',
+          }}
+        >
+          {({ opacity, transform }) => (
+            <Content opacity={opacity} transform={transform}>
+              Here are a couple of the things I’m interested in, actively
+              learning or working on:
+            </Content>
+          )}
+        </Spring>
+      )}
+    </VisibilitySensor>
     <ListContainer>
       <InterestList>
-        <li>Typescript</li>
-        <li>hDOM</li>
-        <li>TDD</li>
-        <li>Rust</li>
+        <VisibilitySensor once partialVisibility offset={{ bottom: 200 }}>
+          {({ isVisible }) => (
+            <>
+              <PushItem direction="left" isVisible={isVisible}>
+                {({ opacity, transform }) => (
+                  <li style={{ opacity, transform }}>Typescript</li>
+                )}
+              </PushItem>
+              <PushItem direction="left" isVisible={isVisible} delay="400">
+                {({ opacity, transform }) => (
+                  <li style={{ opacity, transform }}>hDOM</li>
+                )}
+              </PushItem>
+              <PushItem direction="left" isVisible={isVisible} delay="500">
+                {({ opacity, transform }) => (
+                  <li style={{ opacity, transform }}>TDD</li>
+                )}
+              </PushItem>
+              <PushItem direction="left" isVisible={isVisible} delay="600">
+                {({ opacity, transform }) => (
+                  <li style={{ opacity, transform }}>Rust</li>
+                )}
+              </PushItem>
+            </>
+          )}
+        </VisibilitySensor>
       </InterestList>
       <InterestListMirrored>
-        <li>Typescript</li>
-        <li>hDOM</li>
-        <li>TDD</li>
-        <li>Rust</li>
+        <VisibilitySensor once partialVisibility offset={{ bottom: 200 }}>
+          {({ isVisible }) => (
+            <>
+              <PushItem direction="right" isVisible={isVisible}>
+                {({ opacity, transform }) => (
+                  <li style={{ opacity, transform }}>Typescript</li>
+                )}
+              </PushItem>
+              <PushItem direction="right" isVisible={isVisible} delay="400">
+                {({ opacity, transform }) => (
+                  <li style={{ opacity, transform }}>hDOM</li>
+                )}
+              </PushItem>
+              <PushItem direction="right" isVisible={isVisible} delay="500">
+                {({ opacity, transform }) => (
+                  <li style={{ opacity, transform }}>TDD</li>
+                )}
+              </PushItem>
+              <PushItem direction="right" isVisible={isVisible} delay="600">
+                {({ opacity, transform }) => (
+                  <li style={{ opacity, transform }}>Rust</li>
+                )}
+              </PushItem>
+            </>
+          )}
+        </VisibilitySensor>
       </InterestListMirrored>
     </ListContainer>
   </Section>
