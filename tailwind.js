@@ -153,6 +153,9 @@ module.exports = {
     'header-2-sm': '5.5rem',
     'header-1-lg': '8.125rem', // 130px
     'header-2-lg': '7.375rem', // 118px
+
+    'title-sm': '4.5rem',
+    'title-lg': '6.25rem',
   },
 
   /*
@@ -541,6 +544,8 @@ module.exports = {
     '4': '1rem',
     '6': '1.5rem',
     '8': '2rem',
+
+    spacer: '1.875rem',
 
     'minus-1_2': '-0.3rem',
     'minus-2': '-0.5rem',
