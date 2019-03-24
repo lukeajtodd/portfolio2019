@@ -1,4 +1,5 @@
 import React from 'react'
+import { StaticQuery, graphql } from 'gatsby'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
@@ -87,62 +88,92 @@ const Interests = () => (
       )}
     </VisibilitySensor>
     <ListContainer>
-      <InterestList>
-        <VisibilitySensor once partialVisibility offset={{ bottom: 200 }}>
-          {({ isVisible }) => (
+      <StaticQuery
+        query={graphql`
+          query {
+            gcms {
+              skills {
+                id
+                title
+              }
+            }
+          }
+        `}
+        render={data =>
+          !data.gcms ? (
+            'Loading...'
+          ) : (
             <>
-              <PushItem direction="left" isVisible={isVisible}>
-                {({ opacity, transform }) => (
-                  <li style={{ opacity, transform }}>Typescript</li>
-                )}
-              </PushItem>
-              <PushItem direction="left" isVisible={isVisible} delay="400">
-                {({ opacity, transform }) => (
-                  <li style={{ opacity, transform }}>hDOM</li>
-                )}
-              </PushItem>
-              <PushItem direction="left" isVisible={isVisible} delay="500">
-                {({ opacity, transform }) => (
-                  <li style={{ opacity, transform }}>TDD</li>
-                )}
-              </PushItem>
-              <PushItem direction="left" isVisible={isVisible} delay="600">
-                {({ opacity, transform }) => (
-                  <li style={{ opacity, transform }}>Rust</li>
-                )}
-              </PushItem>
+              <InterestList>
+                <VisibilitySensor
+                  once
+                  partialVisibility
+                  offset={{ bottom: 200 }}
+                >
+                  {({ isVisible }) => {
+                    let delay = 300
+                    return (
+                      <>
+                        {data.gcms.skills.map(interest => {
+                          const comp = (
+                            <PushItem
+                              direction="left"
+                              isVisible={isVisible}
+                              delay={delay}
+                              key={`list-${interest.id}`}
+                            >
+                              {({ opacity, transform }) => (
+                                <li style={{ opacity, transform }}>
+                                  {interest.title}
+                                </li>
+                              )}
+                            </PushItem>
+                          )
+                          delay += 100
+                          return comp
+                        })}
+                      </>
+                    )
+                  }}
+                </VisibilitySensor>
+              </InterestList>
+              <InterestListMirrored>
+                <VisibilitySensor
+                  once
+                  partialVisibility
+                  offset={{ bottom: 200 }}
+                >
+                  {({ isVisible }) => {
+                    let delay = 300
+                    return (
+                      <>
+                        {data.gcms.skills.map(interest => {
+                          const comp = (
+                            <PushItem
+                              direction="right"
+                              isVisible={isVisible}
+                              delay={delay}
+                              key={`mirrored-${interest.id}`}
+                            >
+                              {({ opacity, transform }) => (
+                                <li style={{ opacity, transform }}>
+                                  {interest.title}
+                                </li>
+                              )}
+                            </PushItem>
+                          )
+                          delay += 100
+                          return comp
+                        })}
+                      </>
+                    )
+                  }}
+                </VisibilitySensor>
+              </InterestListMirrored>
             </>
-          )}
-        </VisibilitySensor>
-      </InterestList>
-      <InterestListMirrored>
-        <VisibilitySensor once partialVisibility offset={{ bottom: 200 }}>
-          {({ isVisible }) => (
-            <>
-              <PushItem direction="right" isVisible={isVisible}>
-                {({ opacity, transform }) => (
-                  <li style={{ opacity, transform }}>Typescript</li>
-                )}
-              </PushItem>
-              <PushItem direction="right" isVisible={isVisible} delay="400">
-                {({ opacity, transform }) => (
-                  <li style={{ opacity, transform }}>hDOM</li>
-                )}
-              </PushItem>
-              <PushItem direction="right" isVisible={isVisible} delay="500">
-                {({ opacity, transform }) => (
-                  <li style={{ opacity, transform }}>TDD</li>
-                )}
-              </PushItem>
-              <PushItem direction="right" isVisible={isVisible} delay="600">
-                {({ opacity, transform }) => (
-                  <li style={{ opacity, transform }}>Rust</li>
-                )}
-              </PushItem>
-            </>
-          )}
-        </VisibilitySensor>
-      </InterestListMirrored>
+          )
+        }
+      />
     </ListContainer>
   </Section>
 )

@@ -1,4 +1,5 @@
 import React from 'react'
+import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
 import { Spring } from 'react-spring/renderprops'
@@ -82,56 +83,76 @@ const About = () => (
       </VisibilitySensor>
     </FlexItem>
     <FlexItem display="flex">
-      <VisibilitySensor once>
-        {({ isVisible }) => (
-          <>
-            <Spring
-              delay={300}
-              to={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(200px)',
-              }}
-            >
-              {({ opacity, transform }) => (
-                <Content opacity={opacity} transform={transform}>
-                  I’m an experienced web developer currently working remotely
-                  for an agency called Evoluted.
-                </Content>
+      <StaticQuery
+        query={graphql`
+          query {
+            gcms {
+              page(where: { id: "cjs0n7x25rulg0c15alsk6itc" }) {
+                contentTop
+                contentMid
+                contentBottom
+              }
+            }
+          }
+        `}
+        render={data =>
+          !data.gcms ? (
+            'Loading...'
+          ) : (
+            <VisibilitySensor once>
+              {({ isVisible }) => (
+                <>
+                  <Spring
+                    delay={300}
+                    to={{
+                      opacity: isVisible ? 1 : 0,
+                      transform: isVisible
+                        ? 'translateY(0)'
+                        : 'translateY(200px)',
+                    }}
+                  >
+                    {({ opacity, transform }) => (
+                      <Content opacity={opacity} transform={transform}>
+                        {data.gcms.page.contentTop}
+                      </Content>
+                    )}
+                  </Spring>
+                  <Spring
+                    delay={350}
+                    to={{
+                      opacity: isVisible ? 1 : 0,
+                      transform: isVisible
+                        ? 'translateY(0)'
+                        : 'translateY(200px)',
+                    }}
+                  >
+                    {({ opacity, transform }) => (
+                      <Content opacity={opacity} transform={transform}>
+                        {data.gcms.page.contentMid}
+                      </Content>
+                    )}
+                  </Spring>
+                  <Spring
+                    delay={400}
+                    to={{
+                      opacity: isVisible ? 1 : 0,
+                      transform: isVisible
+                        ? 'translateY(0)'
+                        : 'translateY(200px)',
+                    }}
+                  >
+                    {({ opacity, transform }) => (
+                      <Content opacity={opacity} transform={transform}>
+                        {data.gcms.page.contentBottom}
+                      </Content>
+                    )}
+                  </Spring>
+                </>
               )}
-            </Spring>
-            <Spring
-              delay={350}
-              to={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(200px)',
-              }}
-            >
-              {({ opacity, transform }) => (
-                <Content opacity={opacity} transform={transform}>
-                  I love working with the web, every new challenge that presents
-                  itself and the multitude of different technologies to get
-                  stuck into.
-                </Content>
-              )}
-            </Spring>
-            <Spring
-              delay={400}
-              to={{
-                opacity: isVisible ? 1 : 0,
-                transform: isVisible ? 'translateY(0)' : 'translateY(200px)',
-              }}
-            >
-              {({ opacity, transform }) => (
-                <Content opacity={opacity} transform={transform}>
-                  Speaking of, I love working with Javascript. I know it can be
-                  a bit of a Marmite language sometimes but when done right it
-                  feels great.
-                </Content>
-              )}
-            </Spring>
-          </>
-        )}
-      </VisibilitySensor>
+            </VisibilitySensor>
+          )
+        }
+      />
     </FlexItem>
     <StyledZigzag aria-hidden="true" />
   </Section>

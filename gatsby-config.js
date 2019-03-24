@@ -16,6 +16,18 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-source-graphql',
+      options: {
+        // The top level query type, can be anything you want!
+        typeName: 'GCMS',
+        // The field you'll query against, can also be anything you want.
+        fieldName: 'gcms',
+        // Your API endpoint, available from the dashboard and settings window.
+        url:
+          'https://api-euwest.graphcms.com/v1/cjrf5yac662j101el2t189je3/master',
+      },
+    },
+    {
       resolve: 'gatsby-plugin-react-axe',
       options: {
         showInProduction: false,

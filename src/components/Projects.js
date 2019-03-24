@@ -1,4 +1,5 @@
 import React from 'react'
+import { StaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
 import { Spring } from 'react-spring/renderprops'
@@ -140,24 +141,28 @@ const Projects = () => (
     </FlexItem>
     <ProjectListContainer>
       <ProjectList>
-        <ProjectListItem>
-          <Project href="#">SCLU</Project>
-        </ProjectListItem>
-        <ProjectListItem>
-          <Project href="#">Tutorful</Project>
-        </ProjectListItem>
-        <ProjectListItem>
-          <Project href="#">Plusnet</Project>
-        </ProjectListItem>
-        <ProjectListItem>
-          <Project href="#">Another Project</Project>
-        </ProjectListItem>
-        <ProjectListItem>
-          <Project href="#">SCLU</Project>
-        </ProjectListItem>
-        <ProjectListItem>
-          <Project href="#">SCLU</Project>
-        </ProjectListItem>
+        <StaticQuery
+          query={graphql`
+            query {
+              gcms {
+                projects {
+                  id
+                  title
+                  url
+                }
+              }
+            }
+          `}
+          render={data =>
+            !data.gcms
+              ? 'Loading...'
+              : data.gcms.projects.map(project => (
+                  <ProjectListItem key={project.id}>
+                    <Project href={project.url}>{project.title}</Project>
+                  </ProjectListItem>
+                ))
+          }
+        />
       </ProjectList>
     </ProjectListContainer>
     <VisibilitySensor once>
