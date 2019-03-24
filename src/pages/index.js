@@ -6,6 +6,7 @@ import Globals from '../components/Globals'
 
 import Hero from '../components/Hero'
 import About from '../components/About'
+import Interests from '../components/Interests'
 
 const Container = styled.div`
   ${tw`w-full max-w-content mx-auto`}
@@ -17,6 +18,7 @@ const IndexPage = () => (
     <Container>
       <Hero />
       <About />
+      <Interests />
     </Container>
   </>
 )

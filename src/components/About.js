@@ -19,7 +19,7 @@ const Title = styled.h1`
 `
 
 const Content = styled.p`
-  ${tw`font-sans text-primary text-xl xl:text-2xl leading-normal`}
+  ${tw`font-sans text-primary text-lg xl:text-xl leading-normal`}
   @media screen and (min-width: 1200px) {
     width: 50%;
   }

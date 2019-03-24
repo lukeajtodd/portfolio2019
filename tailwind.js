@@ -156,6 +156,9 @@ module.exports = {
 
     'title-sm': '4.5rem',
     'title-lg': '6.25rem',
+
+    'interest-sm': '2.9rem',
+    'interest-lg': '3.75rem',
   },
 
   /*
@@ -546,6 +549,7 @@ module.exports = {
     '8': '2rem',
 
     spacer: '1.875rem',
+    'spacer-2': '3.75rem',
 
     'minus-1_2': '-0.3rem',
     'minus-2': '-0.5rem',
