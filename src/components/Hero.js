@@ -43,9 +43,15 @@ const Img = styled.img`
 const Link = styled.a`
   ${tw`inline-block text-primary xl:text-background w-8 xl:w-10`}
   width: ${props => props.width};
+  transition: transform .3s;
+  will-change: transform;
 
   svg {
     pointer-events: none;
+  }
+
+  &:hover {
+    transform: scale(1.1);
   }
 
   @media screen and (min-width: 1200px) {
