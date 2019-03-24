@@ -44,6 +44,10 @@ const Link = styled.a`
   ${tw`inline-block text-primary xl:text-background w-8 xl:w-10`}
   width: ${props => props.width};
 
+  svg {
+    pointer-events: none;
+  }
+
   @media screen and (min-width: 1200px) {
     width: ${props => props.largeWidth};
   }
@@ -67,18 +71,25 @@ const Hero = () => (
       </Title>
       <LinkList>
         <ListItem>
-          <Link href="#">
-            <Dribbble style={tw`fill-current w-full`} />
+          <Link
+            href="https://dribbble.com/lukeajtodd"
+            aria-label="Dribbble link"
+          >
+            <Dribbble aria-hidden="true" style={tw`fill-current w-full`} />
           </Link>
         </ListItem>
         <ListItem>
-          <Link href="#" largeWidth="35px">
-            <Bitbucket style={tw`fill-current w-full`} />
+          <Link
+            href="https://bitbucket.org/lukeajtodd/"
+            aria-label="Bitbucket link"
+            largeWidth="35px"
+          >
+            <Bitbucket aria-hidden="true" style={tw`fill-current w-full`} />
           </Link>
         </ListItem>
         <ListItem>
-          <Link href="#">
-            <Github style={tw`fill-current w-full`} />
+          <Link href="https://github.com/lukeajtodd" aria-label="Github link">
+            <Github aria-hidden="true" style={tw`fill-current w-full`} />
           </Link>
         </ListItem>
       </LinkList>

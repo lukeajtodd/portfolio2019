@@ -9,7 +9,7 @@ import About from '../components/About'
 import Interests from '../components/Interests'
 import Projects from '../components/Projects'
 
-const Container = styled.div`
+const Container = styled.main`
   ${tw`w-full max-w-content mx-auto`}
 `
 

@@ -97,6 +97,10 @@ const Link = styled.a`
   ${tw`inline-block text-primary ml-4 xl:text-background w-8 xl:w-10`}
   width: ${props => props.width};
 
+  svg {
+    pointer-events: none;
+  }
+
   @media screen and (min-width: 1200px) {
     width: ${props => props.largeWidth};
   }
@@ -164,8 +168,13 @@ const Projects = () => (
               <MessageBlockTitle>
                 For any more info, just get in touch…
               </MessageBlockTitle>
-              <Link href="#" width="3rem" largeWidth="5rem">
-                <Message />
+              <Link
+                href="mailto:luketodd@zoho.com"
+                aria-label="Email me"
+                width="3rem"
+                largeWidth="5rem"
+              >
+                <Message aria-hidden="true" />
               </Link>
             </MessageBlock>
           )}

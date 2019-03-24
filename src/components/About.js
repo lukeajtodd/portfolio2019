@@ -133,7 +133,7 @@ const About = () => (
         )}
       </VisibilitySensor>
     </FlexItem>
-    <StyledZigzag />
+    <StyledZigzag aria-hidden="true" />
   </Section>
 )
 

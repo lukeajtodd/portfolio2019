@@ -47,7 +47,7 @@ const colors = {
   transparent: 'transparent',
   white: '#FFFFFF',
 
-  background: '#1F1E1E',
+  background: '#0F0F0F',
   primary: '#31F0C4',
 }
 
