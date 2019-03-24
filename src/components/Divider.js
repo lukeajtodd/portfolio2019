@@ -1,4 +1,3 @@
-import React from 'react'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
 
@@ -9,6 +8,8 @@ const Divider = styled.section`
   left: -2rem;
   background-color: #31f0c4;
   width: 100vw;
+  transform: ${props => props.transform};
+  will-change: transform;
 
   @media screen and (min-width: 1200px) {
     position: absolute;

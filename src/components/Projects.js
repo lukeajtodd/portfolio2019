@@ -1,8 +1,10 @@
 import React from 'react'
 import styled from 'styled-components'
 import tw from 'tailwind.macro'
+import { Spring } from 'react-spring/renderprops'
 
 import Divider from './Divider'
+import VisibilitySensor from './VisibilitySensor'
 
 import Message from '../svgs/email.svg'
 
@@ -16,6 +18,7 @@ const Section = styled.section`
 
 const Title = styled.h1`
   ${tw`m-0 font-display text-primary text-title-sm xl:text-title-lg xl:text-left font-medium mt-spacer`}
+  opacity: ${props => props.opacity};
   @media screen and (min-width: 1200px) {
     margin-top: 280px;
   }
@@ -100,8 +103,28 @@ const Link = styled.a`
 const Projects = () => (
   <Section>
     <FlexItem width="40%">
-      <Title>Projects</Title>
-      <Divider />
+      <VisibilitySensor once partialVisiblity offset={{ bottom: 100 }}>
+        {({ isVisible }) => (
+          <>
+            <Spring
+              delay={300}
+              to={{
+                opacity: isVisible ? 1 : 0,
+              }}
+            >
+              {({ opacity }) => <Title opacity={opacity}>Projects</Title>}
+            </Spring>
+            <Spring
+              delay={300}
+              to={{
+                transform: isVisible ? 'translateX(0)' : 'translateX(100%)',
+              }}
+            >
+              {({ transform }) => <Divider transform={transform} />}
+            </Spring>
+          </>
+        )}
+      </VisibilitySensor>
     </FlexItem>
     <ProjectListContainer>
       <ProjectList>

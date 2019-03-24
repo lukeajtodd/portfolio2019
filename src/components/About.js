@@ -15,6 +15,8 @@ const Section = styled.section`
 
 const Title = styled.h1`
   ${tw`m-0 font-display text-primary text-title-sm xl:text-title-lg xl:text-right font-medium mt-spacer`}
+  opacity: ${props => props.opacity};
+  transform: ${props => props.transform};
   @media screen and (min-width: 1200px) {
     margin-top: 280px;
   }
@@ -43,8 +45,28 @@ const FlexItem = styled.div`
 const About = () => (
   <Section>
     <FlexItem width="30%" height="100%">
-      <Title>About</Title>
-      <Divider side="left" />
+      <VisibilitySensor once>
+        {({ isVisible }) => (
+          <>
+            <Spring
+              delay={300}
+              to={{
+                opacity: isVisible ? 1 : 0,
+              }}
+            >
+              {({ opacity }) => <Title opacity={opacity}>About</Title>}
+            </Spring>
+            <Spring
+              delay={300}
+              to={{
+                transform: isVisible ? 'translateX(0)' : 'translateX(-100%)',
+              }}
+            >
+              {({ transform }) => <Divider side="left" transform={transform} />}
+            </Spring>
+          </>
+        )}
+      </VisibilitySensor>
     </FlexItem>
     <FlexItem display="flex">
       <VisibilitySensor once>
